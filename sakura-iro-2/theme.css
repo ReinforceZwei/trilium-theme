@@ -1,0 +1,193 @@
+/*
+ * ============================================================================
+ *  Sakura Iro — light pink theme for Trilium
+ * ----------------------------------------------------------------------------
+ *  A minimal starting point, based on the TriliumNext "Next" light stylesheet
+ *  (apps/client/src/stylesheets/theme-next-light.css). Nothing is re-styled by
+ *  hand: the base theme loads underneath and this note only re-points its
+ *  colour variables.
+ *
+ *  This note carries its own attributes:
+ *      #appTheme     = sakura-iro-2
+ *      #appThemeBase = next-light
+ *
+ *  READ ME BEFORE EDITING — why the selectors are `:root, #trilium-app`:
+ *  Trilium inserts the custom theme's <link> BEFORE the base theme's one, so a
+ *  plain `:root` block here is overridden by the base's own `:root` (same
+ *  specificity, later stylesheet wins). `#trilium-app` is the <body>, and one
+ *  id out-specifies `:root` no matter the order — so the block below always
+ *  wins. Keep both selectors on the block when adding rules.
+ *
+ *  Applying edits: Ctrl+Shift+R in Trilium, or pick the theme in
+ *  Settings → Appearance. Keep a second window open for live preview.
+ *
+ *  Tuning: change the palette tokens first — the mapping below reads from them.
+ *  Deliberately left alone for now (safe places to grow): board columns,
+ *  calendar, timeline, the backend-log and search-syntax colours, toolbars,
+ *  fonts, and the launcher-pane background-effect tints.
+ * ============================================================================
+ */
+
+:root,
+#trilium-app {
+    /* -- Palette --------------------------------------------------------- */
+    --sakura-petal:   #ffd6e0;  /* selected rows, filled accents          */
+    --sakura-blossom: #f7b8cc;  /* secondary accents                      */
+    --sakura:         #e0799c;  /* primary accent, icons                  */
+    --sakura-accent:  #c9517a;  /* borders, outlines, strong accents      */
+    --sakura-deep:    #a52a56;  /* text sitting on petal                  */
+    --sakura-link:    #bf3f70;  /* links                                  */
+    --sakura-ink:     #46363c;  /* body text                              */
+    --sakura-muted:   #7d616a;  /* secondary text                         */
+    --sakura-mist:    #fffafc;  /* main surface                           */
+    --sakura-veil:    #fbeaf0;  /* tree pane, accented surfaces           */
+    --sakura-line:    #f3d6e0;  /* hairlines                              */
+
+    /* -- Base ------------------------------------------------------------ */
+    --theme-style: light;       /* drives the light-theme class + color-scheme */
+    --main-background-color: var(--sakura-mist);
+    --main-text-color: var(--sakura-ink);
+    --main-border-color: var(--sakura-line);
+    --subtle-border-color: rgba(224, 121, 156, 0.28);
+    --accented-background-color: var(--sakura-veil);
+    --muted-text-color: var(--sakura-muted);
+
+    /* -- Links and selection --------------------------------------------- */
+    --link-color: var(--sakura-link);
+    --link-hover-color: var(--sakura-link);
+    --link-hover-background: rgba(201, 81, 122, 0.12);
+    --link-selection-outline-color: rgba(201, 81, 122, 0.5);
+    --selection-background-color: rgba(247, 184, 204, 0.85);
+    --input-selection-background: var(--sakura-blossom);
+    --input-selection-text-color: #5c1c33;
+
+    /* -- Note tree / left pane ------------------------------------------- */
+    --left-pane-background-color: var(--sakura-veil);
+    --left-pane-text-color: #4d3a41;
+    --left-pane-item-hover-background: rgba(224, 121, 156, 0.14);
+    --left-pane-item-selected-background: var(--sakura-petal);
+    --left-pane-item-selected-color: var(--sakura-deep);
+    --left-pane-item-selected-shadow: 1px 1px 2px rgba(201, 81, 122, 0.35);
+    --left-pane-item-action-button-background: rgba(201, 81, 122, 0.16);
+    --left-pane-item-action-button-color: #8c6570;
+    --left-pane-item-action-button-hover-background: var(--sakura-mist);
+    --left-pane-item-action-button-hover-shadow: 2px 2px 3px rgba(201, 81, 122, 0.28);
+    --left-pane-item-selected-action-button-hover-shadow: 2px 2px 10px rgba(201, 81, 122, 0.4);
+    --root-background: var(--sakura-veil);
+
+    /* -- Generic item states --------------------------------------------- */
+    --hover-item-background-color: rgba(224, 121, 156, 0.14);
+    --hover-item-text-color: var(--sakura-ink);
+    --active-item-background-color: var(--sakura-petal);
+    --active-item-text-color: var(--sakura-deep);
+    --active-item-border-color: var(--sakura-accent);
+
+    /* -- Launcher pane --------------------------------------------------- */
+    --launcher-pane-vert-background-color: #f6dde6;
+    --launcher-pane-vert-text-color: #7a5560;
+    --launcher-pane-vert-button-hover-color: var(--sakura-accent);
+    --launcher-pane-vert-button-hover-background: var(--sakura-mist);
+    --launcher-pane-vert-button-hover-shadow: 4px 4px 4px rgba(201, 81, 122, 0.14);
+    --launcher-pane-horiz-background-color: #fdf1f5;
+    --launcher-pane-horiz-border-color: rgba(201, 81, 122, 0.18);
+    --launcher-pane-horiz-button-hover-color: var(--sakura-accent);
+
+    /* -- Tabs ------------------------------------------------------------ */
+    --active-tab-background-color: var(--sakura-mist);
+    --active-tab-text-color: #5a3f48;
+    --active-tab-icon-color: var(--sakura-accent);
+    --active-tab-shadow: 3px 3px 6px rgba(201, 81, 122, 0.12);
+    --inactive-tab-text-color: #7a5c66;
+    --inactive-tab-hover-background-color: rgba(224, 121, 156, 0.16);
+    --new-tab-button-background: var(--sakura-petal);
+    --new-tab-button-color: var(--sakura-deep);
+    --new-tab-button-hover-background: var(--sakura-mist);
+    --new-tab-button-hover-color: var(--sakura-accent);
+    --new-tab-button-shadow: 2px 2px 4px rgba(201, 81, 122, 0.3);
+
+    /* -- Inputs ---------------------------------------------------------- */
+    --input-background-color: rgba(201, 81, 122, 0.1);
+    --input-text-color: var(--sakura-ink);
+    --input-placeholder-color: rgba(125, 97, 106, 0.75);
+    --input-hover-background: rgba(201, 81, 122, 0.16);
+    --input-hover-color: var(--sakura-ink);
+    --input-focus-background: #fffdfe;
+    --input-focus-color: var(--sakura-ink);
+    --input-focus-outline-color: rgba(201, 81, 122, 0.55);
+    --input-action-button-color: #8c6570;
+    --input-action-button-hover: var(--sakura-accent);
+    --radio-checkbox-background: rgba(201, 81, 122, 0.32);
+    --radio-checkbox-hover-background: rgba(201, 81, 122, 0.5);
+    --radio-checkbox-indicator-color: #fff;
+
+    /* -- Menus, dropdowns, dialogs --------------------------------------- */
+    --dropdown-border-color: var(--sakura-line);
+    --menu-text-color: var(--sakura-ink);
+    --menu-background-color: #fffafce6;
+    --menu-background-color-no-backdrop: var(--sakura-mist);
+    --menu-item-icon-color: #b0708a;
+    --menu-item-group-header-color: rgba(125, 97, 106, 0.7);
+    --menu-section-background-color: rgba(201, 81, 122, 0.05);
+    --menu-item-delimiter-color: rgba(201, 81, 122, 0.18);
+    --modal-background-color: var(--sakura-mist);
+    --modal-border-color: var(--sakura-line);
+    --modal-backdrop-color: #e6b9c8;
+    --modal-shadow-color: rgba(122, 60, 82, 0.2);
+    --modal-title-color: var(--sakura-muted);
+    --modal-control-button-background: rgba(201, 81, 122, 0.12);
+    --modal-control-button-color: #8c6570;
+    --modal-control-button-hover-background: var(--sakura-accent);
+    --modal-control-button-hover-color: #fff;
+    --modal-footer-background: rgba(201, 81, 122, 0.06);
+    --modal-footer-color: var(--sakura-muted);
+    --tool-dialog-background-color: var(--sakura-mist);
+
+    /* -- Quick search ---------------------------------------------------- */
+    --quick-search-background: rgba(201, 81, 122, 0.1);
+    --quick-search-color: rgba(125, 97, 106, 0.75);
+    --quick-search-hover-background: rgba(201, 81, 122, 0.16);
+    --quick-search-focus-border: rgba(201, 81, 122, 0.3);
+    --quick-search-focus-background: #fffdfe;
+    --quick-search-focus-color: var(--sakura-ink);
+    --quick-search-result-content-background: rgba(201, 81, 122, 0.07);
+    --quick-search-result-highlight-color: #c2185b;
+    --quick-search-result-fuzzy-highlight-color: var(--sakura);
+
+    /* -- Right pane, bottom panel, status bar, scrollbars ---------------- */
+    --right-pane-background-color: var(--sakura-mist);
+    --right-pane-heading-color: var(--sakura-muted);
+    --right-pane-item-hover-background: rgba(201, 81, 122, 0.1);
+    --right-pane-peek-background: #fffafcf2;
+    --bottom-panel-background-color: #fffafcd9;
+    --bottom-panel-title-bar-background-color: rgba(201, 81, 122, 0.06);
+    --status-bar-border-color: rgba(201, 81, 122, 0.22);
+    --gutter-hover-color: var(--sakura-blossom);
+    --scrollbar-thumb-color: rgba(201, 81, 122, 0.42);
+    --scrollbar-thumb-hover-color: rgba(201, 81, 122, 0.62);
+
+    /* -- Cards, code, icons, overlays ------------------------------------ */
+    --card-background-color: rgba(201, 81, 122, 0.08);
+    --card-background-hover-color: rgba(201, 81, 122, 0.15);
+    --card-shadow-color: rgba(201, 81, 122, 0.18);
+    --inline-code-background-color: rgba(201, 81, 122, 0.1);
+    --inline-code-border-color: rgba(201, 81, 122, 0.2);
+    --inline-code-hover-background-color: rgba(201, 81, 122, 0.16);
+    --code-block-box-shadow: 4px 4px 8px rgba(201, 81, 122, 0.12), 0 0 2px rgba(201, 81, 122, 0.18);
+    --note-icon-background-color: var(--sakura);
+    --note-icon-hover-background-color: var(--sakura-blossom);
+    --note-icon-color: #fff;
+    --promoted-attribute-card-background-color: rgba(201, 81, 122, 0.09);
+    --badge-background-color: rgba(201, 81, 122, 0.12);
+    --badge-text-color: var(--sakura-muted);
+    --toast-background: rgba(74, 43, 54, 0.92);
+    --toast-text-color: #ffeef5;
+    --toast-close-button-background: rgba(255, 255, 255, 0.22);
+    --tooltip-background-color: rgba(74, 43, 54, 0.85);
+    --tooltip-foreground-color: #ffeef5;
+    --note-tooltip-background-color: #fff2f7d9;
+    --floating-button-background-color: #fdeaf1cc;
+    --floating-button-color: #7a5560;
+    --floating-button-hover-color: var(--sakura-accent);
+    --opaque-icon-button-background: #f8e2ebd7;
+    --opaque-icon-button-hover-background-color: #f3d2dfd7;
+}
